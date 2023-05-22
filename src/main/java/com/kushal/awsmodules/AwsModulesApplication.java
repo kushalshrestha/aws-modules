@@ -1,14 +1,7 @@
 package com.kushal.awsmodules;
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.model.Delete;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+
 import com.amazonaws.services.s3.model.Bucket;
-import com.amazonaws.services.s3.model.DeleteObjectsRequest;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.kushal.awsmodules.s3.service.AWSS3Service;
@@ -22,25 +15,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.Properties;
 
 @SpringBootApplication
 public class AwsModulesApplication implements CommandLineRunner {
     @Value("${aws.s3.bucketName}")
     private String bucketName;
-    @Value("${aws.accesskey}")
-    private String accessKey;
-    @Value("${aws.secretkey}")
-    private String secretKey;
+
+    @Autowired
+    AWSS3Service awsService;
 
     @Autowired
     private PropertyReader propertyReader;
 
-    private FileService fileService;
+    public AwsModulesApplication() {
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(AwsModulesApplication.class, args);
@@ -63,15 +52,6 @@ public class AwsModulesApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-        AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
-
-        //AmazonS3 client setup
-        AmazonS3 s3client = AmazonS3ClientBuilder.standard()
-                                                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
-                                                 .withRegion(Regions.US_EAST_1)
-                                                 .build();
-        AWSS3Service awsService = new AWSS3Service(s3client);
 
         //creating a bucket
         System.out.println("------ Creating a bucket with name : " + bucketName + "---------");
