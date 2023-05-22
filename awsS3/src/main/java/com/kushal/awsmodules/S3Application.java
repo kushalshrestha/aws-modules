@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.List;
 
 @SpringBootApplication
-public class AwsModulesApplication implements CommandLineRunner {
+public class S3Application implements CommandLineRunner {
     @Value("${aws.s3.bucketName}")
     private String bucketName;
 
@@ -28,11 +28,11 @@ public class AwsModulesApplication implements CommandLineRunner {
     @Autowired
     private PropertyReader propertyReader;
 
-    public AwsModulesApplication() {
+    public S3Application() {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(AwsModulesApplication.class, args);
+        SpringApplication.run(S3Application.class, args);
     }
 
     public static void listFiles(File directory) {
