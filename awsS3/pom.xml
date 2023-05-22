@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.kushal</groupId>
-    <artifactId>aws-s3</artifactId>
+    <artifactId>awsS3</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>aws-s3</name>
     <description>AWS S3 using Spring Boot</description>
