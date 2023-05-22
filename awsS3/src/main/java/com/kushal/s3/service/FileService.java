@@ -1,4 +1,4 @@
-package com.kushal.awsmodules.s3.service;
+package com.kushal.s3.service;
 
 import org.springframework.stereotype.Service;
 

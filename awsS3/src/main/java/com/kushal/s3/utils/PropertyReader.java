@@ -1,9 +1,8 @@
-package com.kushal.awsmodules.s3.utils;
+package com.kushal.s3.utils;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 @Configuration
 @Getter

@@ -1,4 +1,4 @@
-package com.kushal.awsmodules.s3.service;
+package com.kushal.s3.service;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;

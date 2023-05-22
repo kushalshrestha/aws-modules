@@ -1,12 +1,12 @@
-package com.kushal.awsmodules;
+package com.kushal.s3;
 
 
 import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
-import com.kushal.awsmodules.s3.service.AWSS3Service;
-import com.kushal.awsmodules.s3.service.FileService;
-import com.kushal.awsmodules.s3.utils.PropertyReader;
+import com.kushal.s3.utils.PropertyReader;
+import com.kushal.s3.service.AWSS3Service;
+import com.kushal.s3.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
