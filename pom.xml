@@ -16,6 +16,7 @@
     <description>AWS Modules using Spring Boot</description>
     <modules>
         <module>awsS3</module>
+        <module>dynamoDb</module>
     </modules>
 
 
