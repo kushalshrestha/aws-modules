@@ -12,6 +12,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 
+
+/**
+ * This class has a method that receives from the controller a request, transforms it into a DTO,
+ * and sends this DTO to the topic using different methods available in the NotificationMessagingTemplate class.
+ * */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -29,7 +34,7 @@ public class TransactionService {
 
         log.info("Sending purchase transaction");
 
-        // Using send method
+        //1. Using send method
         Message<TransactionDTO> message = new GenericMessage<>(transactionDTO);
         transactionDTO.setSentFrom("Method send args <<generic message>>. Using default topic.");
         log.info("Method send args <<generic message>>. Using default topic.");
@@ -46,7 +51,7 @@ public class TransactionService {
         message = new GenericMessage<>(transactionDTO, messageHeaders);
         notificationMessagingTemplate.send(topicName, message);
 
-        //Using convertAndSend method
+        //2. Using convertAndSend method
         log.info("Method convertAndSend args <<object transactionDTO>>. Using default topic.");
         transactionDTO.setSentFrom("Method convertAndSend args <<object transactionDTO>>. Using default topic.");
         notificationMessagingTemplate.convertAndSend(new GenericMessage<>(transactionDTO));
@@ -60,13 +65,13 @@ public class TransactionService {
         messageHeaders.put("Key_send_message", "Value_convertAndSend_message");
         notificationMessagingTemplate.convertAndSend(topicName, transactionDTO, messageHeaders);
 
-        // Using sendNotification method
+        //3. Using sendNotification method
         log.info("Method sendNotification args <<object transactionDTO>>, <<subject>>. Using default topic.");
         transactionDTO.setSentFrom("Method sendNotification args <<object transactionDTO>>, <<subject>>. Using default topic.");
-        notificationMessagingTemplate.sendNotification(transactionDTO, "purchase-transaction-subject");
+        notificationMessagingTemplate.sendNotification(transactionDTO, "transaction-subject");
 
         log.info("Method sendNotification args <<topicName>> , <<object transactionDTO>>, <<subject>>.");
         transactionDTO.setSentFrom("Method sendNotification args <<topicName>> , <<object transactionDTO>>, <<subject>>.");
-        notificationMessagingTemplate.sendNotification(topicName, transactionDTO, "purchase-transaction-subject");
+        notificationMessagingTemplate.sendNotification(topicName, transactionDTO, "transaction-subject");
     }
 }
