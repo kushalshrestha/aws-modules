@@ -18,6 +18,11 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
  */
 public class App {
 
+    /**
+     * By Passing Primitive Type
+     * @param name
+     * @return
+     */
     public String hello(String name) {
         return "Lambda Functions are super easy and awesome!!!" + name;
     }
