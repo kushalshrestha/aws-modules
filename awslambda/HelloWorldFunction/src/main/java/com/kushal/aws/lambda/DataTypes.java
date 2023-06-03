@@ -1,9 +1,6 @@
 package com.kushal.aws.lambda;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DataTypes {
 
@@ -17,10 +14,17 @@ public class DataTypes {
         return (int) number;
     }
 
+
     public boolean isGreaterThan100(float number) {
         return number > 100;
     }
 
+    /**
+     * For testing this method: change events.json with a List of String : ["John", "Kushal", "No name"]
+     *
+     * @param names
+     * @return
+     */
     public List<Integer> getScores(List<String> names) {
         Map<String, Integer> studentScores = new HashMap<>();
         studentScores.put("John", 90);
@@ -32,5 +36,25 @@ public class DataTypes {
             matchingScores.add(studentScores.get(name));
         });
         return matchingScores;
+    }
+
+    /**
+     * event.json input should be in json for Map Like:
+     * {
+     *   "John": 80,
+     *   "Kushal": 95,
+     *   "Messi": 100
+     * }
+     * @param scores
+     * @return
+     */
+    public Map<String, Integer> getScoreGreaterThan90(Map<String, Integer> scores) {
+        Map<String, Integer> filteredScores = new HashMap<>();
+        for (Map.Entry<String, Integer> entry : scores.entrySet()) {
+            if (entry.getValue() > 90) {
+                filteredScores.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return filteredScores;
     }
 }

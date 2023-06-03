@@ -20,7 +20,8 @@ Resources:
 #      Handler: helloworld.App::hello #package.className::methodName
 #      Handler: com.kushal.aws.lambda.DataTypes::getNumber
 #      Handler: com.kushal.aws.lambda.DataTypes::isGreaterThan100
-      Handler: com.kushal.aws.lambda.DataTypes::getScores
+#      Handler: com.kushal.aws.lambda.DataTypes::getScores
+      Handler: com.kushal.aws.lambda.DataTypes::getScoreGreaterThan90
       Runtime: java17
       Architectures:
         - x86_64
