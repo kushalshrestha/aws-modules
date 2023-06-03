@@ -18,7 +18,9 @@ Resources:
       CodeUri: HelloWorldFunction
       #package.className::methodName. After changes run sam build and if local run -> sam local invoke ....
 #      Handler: helloworld.App::hello #package.className::methodName
-      Handler: com.kushal.aws.lambda.DataTypes::getNumber
+#      Handler: com.kushal.aws.lambda.DataTypes::getNumber
+#      Handler: com.kushal.aws.lambda.DataTypes::isGreaterThan100
+      Handler: com.kushal.aws.lambda.DataTypes::getScores
       Runtime: java17
       Architectures:
         - x86_64
