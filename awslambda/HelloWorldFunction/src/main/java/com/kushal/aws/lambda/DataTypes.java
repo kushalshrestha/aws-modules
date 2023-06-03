@@ -41,10 +41,11 @@ public class DataTypes {
     /**
      * event.json input should be in json for Map Like:
      * {
-     *   "John": 80,
-     *   "Kushal": 95,
-     *   "Messi": 100
+     * "John": 80,
+     * "Kushal": 95,
+     * "Messi": 100
      * }
+     *
      * @param scores
      * @return
      */
@@ -56,5 +57,19 @@ public class DataTypes {
             }
         }
         return filteredScores;
+    }
+
+    /**
+     * For Map of Lists
+     * INPUT: Empty
+     * OUTPUT: {"Bob":[80,70,90],"John":[80,90,100],"Kushal":[80,90,20]}%
+     * @return
+     */
+    public Map<String, List<Integer>> getStudentScores() {
+        Map<String, List<Integer>> studentScores = new HashMap<String, List<Integer>>();
+        studentScores.put("John", Arrays.asList(80, 90, 100));
+        studentScores.put("Bob", Arrays.asList(80, 70, 90));
+        studentScores.put("Kushal", Arrays.asList(80, 90, 20));
+        return studentScores;
     }
 }
