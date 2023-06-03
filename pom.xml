@@ -18,6 +18,7 @@
         <module>awsS3</module>
         <module>dynamoDb</module>
         <module>sns</module>
+        <module>awslambda/HelloWorldFunction</module>
     </modules>
 
 
