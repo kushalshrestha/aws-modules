@@ -25,8 +25,10 @@ Resources:
 #      Handler: com.kushal.aws.lambda.DataTypes::getStudentScores
 #      Handler: com.kushal.aws.lambda.DataTypes::getClinicals
 #      Handler: com.kushal.aws.lambda.DataTypes::getOutputInLowerCase
-      Handler: com.kushal.aws.lambda.DataTypes::playWithAWSLambdaContextObject
+#      Handler: com.kushal.aws.lambda.DataTypes::playWithAWSLambdaContextObject
+      Handler: com.kushal.aws.lambda.DataTypes::setTimeOut
       Runtime: java17
       Architectures:
         - x86_64
       MemorySize: 512
+      Timeout: 30 # in seconds. Default : 20 seconds (default time keep on changing by AWS)

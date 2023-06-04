@@ -128,4 +128,27 @@ public class DataTypes {
             output.write(Character.toLowerCase(data));
         }
     }
+
+    /**
+     * Set Timeout
+     * Default Timeout: 20 seconds i.e 20000ms
+     * To change the timout period, modify template.yaml file with Timeout: X <- in seconds
+     * @param input
+     * @param output
+     * @param context
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public void setTimeOut(InputStream input, OutputStream output, Context context) throws IOException, InterruptedException {
+        Thread.sleep(21000);
+        System.out.println("Request ID : " + context.getAwsRequestId());
+        System.out.println("Function Name : " + context.getFunctionName());
+        System.out.println("Remaining Time In Millis : " + context.getRemainingTimeInMillis());
+        System.out.println("Get Memory Limit In MB : " + context.getMemoryLimitInMB());
+        System.out.println("Get Group Name " + context.getLogGroupName());
+        int data;
+        while ((data = input.read()) != -1) {
+            output.write(Character.toLowerCase(data));
+        }
+    }
 }
