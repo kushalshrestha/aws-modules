@@ -123,7 +123,22 @@ To delete the sample application that you created, use the AWS CLI. Assuming you
 ```bash
 sam delete --stack-name awslambda
 ```
+## Invoking remotely
+```bash
+# IF ASYNCHRONOUS
+aws lambda invoke --invocation-type Event --function-name <functionname> outputfile.txt
 
+# IF SYNCHRONOUS - use RequestResponse
+# Here --payload is optional, use if there's input 
+# parameter and outputfile.txt filename for output
+
+aws lambda invoke --invocation-type RequestResponse --function-name <FunctionName>  --payload "data" outputfile.txt
+
+
+
+aws lambda invoke --invocation-type RequestResponse --function-name <FunctionName> outputfile.txt
+
+```
 ## Resources
 
 See the [AWS SAM developer guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html) for an introduction to SAM specification, the SAM CLI, and serverless application concepts.

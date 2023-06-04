@@ -21,6 +21,15 @@ public class DataTypes {
         System.out.println("Inside Constructor");
     }
 
+    /**
+     * Asynchronous function - void -> does not return anything
+     * Try using below command from any path location:
+     * @Option1 FOR INVOKING REMOTELY FROM COMMAND LINE AND SEE LOGS IN CLOUDWATCH:
+     * @command: aws lambda invoke --invocation-type Event --function-name
+     *      awslambda-HelloWorldFunction-jz3hF5YlHKC7 outputfile.txt
+     * @Option2 Else use :
+     * @command: sam local invoke HelloWorldFunction --event events/event.json
+     */
     public void coldstartBasics() {
         Double localVariable = Math.random();
         System.out.println("Static Variable : " + staticVariable);
@@ -86,7 +95,7 @@ public class DataTypes {
     /**
      * For Map of Lists
      * INPUT: Empty
-     * OUTPUT: {"Bob":[80,70,90],"John":[80,90,100],"Kushal":[80,90,20]}%
+     * OUTPUT: {"Bob":[80,70,90],"John":[80,90,100],"Kushal":[80,90,20]}
      *
      * @return
      */
