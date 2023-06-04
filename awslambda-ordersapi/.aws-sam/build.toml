@@ -5,9 +5,9 @@ codeuri = "/Users/kushal/eclipse-workspace/aws-modules/awslambda-ordersapi/awsla
 runtime = "java17"
 architecture = "x86_64"
 handler = "com.kushal.aws.lambda.apis.CreateOrderLambda::createOrder"
-source_hash = "8f83dea6d6f986ce0ee8b1b098f211879111bccf37f61a225c69ee94e4356d2f"
+source_hash = "ef58677a3b2817434d3291925e51373c25fe4d2bd1c0f9065a80c2696fe80893"
 manifest_hash = ""
 packagetype = "Zip"
-functions = ["CreateOrderFunction"]
+functions = ["CreateOrderFunction", "ReadOrdersFunction"]
 
 [layer_build_definitions]
