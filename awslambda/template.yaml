@@ -23,7 +23,9 @@ Resources:
 #      Handler: com.kushal.aws.lambda.DataTypes::getScores
 #      Handler: com.kushal.aws.lambda.DataTypes::getScoreGreaterThan90
 #      Handler: com.kushal.aws.lambda.DataTypes::getStudentScores
-      Handler: com.kushal.aws.lambda.DataTypes::getClinicals
+#      Handler: com.kushal.aws.lambda.DataTypes::getClinicals
+#      Handler: com.kushal.aws.lambda.DataTypes::getOutputInLowerCase
+      Handler: com.kushal.aws.lambda.DataTypes::playWithAWSLambdaContextObject
       Runtime: java17
       Architectures:
         - x86_64

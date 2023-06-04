@@ -1,5 +1,10 @@
 package com.kushal.aws.lambda;
 
+import com.amazonaws.services.lambda.runtime.Context;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.*;
 
 public class DataTypes {
@@ -64,6 +69,7 @@ public class DataTypes {
      * For Map of Lists
      * INPUT: Empty
      * OUTPUT: {"Bob":[80,70,90],"John":[80,90,100],"Kushal":[80,90,20]}%
+     *
      * @return
      */
     public Map<String, List<Integer>> getStudentScores() {
@@ -76,6 +82,7 @@ public class DataTypes {
 
     /**
      * For POJOs
+     *
      * @param patient
      * @return
      */
@@ -86,5 +93,39 @@ public class DataTypes {
         clinicalData.setBp("80/120");
         clinicalData.setHeartRate("80");
         return clinicalData;
+    }
+
+    /**
+     * For Input and Output Streams
+     * INPUT SAMPLE: ALL THE POWER IS WITH IN YOU. YOU can do anything, just BELIEVE it.
+     *
+     * @param input
+     * @param output
+     * @throws IOException
+     */
+    public void getOutputInLowerCase(InputStream input, OutputStream output) throws IOException {
+        int data;
+        while ((data = input.read()) != -1) {
+            output.write(Character.toLowerCase(data));
+        }
+    }
+
+    /**
+     * Playing with AWS Lambda Context Object
+     *
+     * @param input
+     * @param output
+     * @throws IOException
+     */
+    public void playWithAWSLambdaContextObject(InputStream input, OutputStream output, Context context) throws IOException {
+        System.out.println("Request ID : " + context.getAwsRequestId());
+        System.out.println("Function Name : " + context.getFunctionName());
+        System.out.println("Remaining Time In Millis : " + context.getRemainingTimeInMillis());
+        System.out.println("Get Memory Limit In MB : " + context.getMemoryLimitInMB());
+        System.out.println("Get Group Name " + context.getLogGroupName());
+        int data;
+        while ((data = input.read()) != -1) {
+            output.write(Character.toLowerCase(data));
+        }
     }
 }
