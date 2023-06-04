@@ -151,4 +151,14 @@ public class DataTypes {
             output.write(Character.toLowerCase(data));
         }
     }
+
+
+    /**
+     * Passing environment variables dynamically in our lambda function
+     * @param input
+     * @param output
+     */
+    public void getEnvironmentVariables(InputStream input, OutputStream output) {
+        System.out.println(System.getenv("restapiurl"));
+    }
 }
