@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>helloworld</groupId>
-    <artifactId>HelloWorld</artifactId>
+    <groupId>awslambda-ordersapi</groupId>
+    <artifactId>awslambda-ordersapi</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
     <name>AWS Lambda Project - OrdersAPI using SAM CLI.</name>
@@ -22,6 +22,19 @@
           <artifactId>aws-lambda-java-events</artifactId>
           <version>3.11.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+
         <dependency>
           <groupId>junit</groupId>
           <artifactId>junit</artifactId>

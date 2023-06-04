@@ -19,7 +19,7 @@
         <module>dynamoDb</module>
         <module>sns</module>
         <module>awslambda/HelloWorldFunction</module>
-        <module>awslambda-ordersapi/HelloWorldFunction</module>
+        <module>awslambda-ordersapi/awslambda-ordersapi</module>
     </modules>
 
 
