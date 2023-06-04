@@ -9,6 +9,24 @@ import java.util.*;
 
 public class DataTypes {
 
+    private static final Double staticVariable = Math.random();
+
+    static {
+        System.out.println("Static Block Executed");
+    }
+
+    private final Double instanceVariable = Math.random();
+
+    public DataTypes() {
+        System.out.println("Inside Constructor");
+    }
+
+    public void coldstartBasics() {
+        Double localVariable = Math.random();
+        System.out.println("Static Variable : " + staticVariable);
+        System.out.println("Instance Variable : " + instanceVariable);
+        System.out.println("Local Variable : " + localVariable);
+    }
 
     /**
      * Creating a lambda function method with input param float and return type of int
@@ -133,6 +151,7 @@ public class DataTypes {
      * Set Timeout
      * Default Timeout: 20 seconds i.e 20000ms
      * To change the timout period, modify template.yaml file with Timeout: X <- in seconds
+     *
      * @param input
      * @param output
      * @param context
@@ -155,6 +174,7 @@ public class DataTypes {
 
     /**
      * Passing environment variables dynamically in our lambda function
+     *
      * @param input
      * @param output
      */

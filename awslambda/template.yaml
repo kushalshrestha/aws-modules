@@ -27,7 +27,8 @@ Resources:
 #      Handler: com.kushal.aws.lambda.DataTypes::getOutputInLowerCase
 #      Handler: com.kushal.aws.lambda.DataTypes::playWithAWSLambdaContextObject
 #      Handler: com.kushal.aws.lambda.DataTypes::setTimeOut
-      Handler: com.kushal.aws.lambda.DataTypes::getEnvironmentVariables
+#      Handler: com.kushal.aws.lambda.DataTypes::getEnvironmentVariables
+      Handler: com.kushal.aws.lambda.DataTypes::coldstartBasics
       Runtime: java17
       Architectures:
         - x86_64
