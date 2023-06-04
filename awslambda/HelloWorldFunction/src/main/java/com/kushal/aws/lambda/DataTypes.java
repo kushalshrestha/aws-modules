@@ -4,6 +4,7 @@ import java.util.*;
 
 public class DataTypes {
 
+
     /**
      * Creating a lambda function method with input param float and return type of int
      *
@@ -71,5 +72,19 @@ public class DataTypes {
         studentScores.put("Bob", Arrays.asList(80, 70, 90));
         studentScores.put("Kushal", Arrays.asList(80, 90, 20));
         return studentScores;
+    }
+
+    /**
+     * For POJOs
+     * @param patient
+     * @return
+     */
+    public ClinicalData getClinicals(Patient patient) {
+        System.out.println("Name : " + patient.getName());
+        System.out.println("SSN : " + patient.getSsn());
+        ClinicalData clinicalData = new ClinicalData();
+        clinicalData.setBp("80/120");
+        clinicalData.setHeartRate("80");
+        return clinicalData;
     }
 }
