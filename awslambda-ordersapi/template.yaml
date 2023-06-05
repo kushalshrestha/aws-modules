@@ -12,8 +12,7 @@ Globals:
     MemorySize: 512
     Timeout: 30
     Environment:
-      Variables:
-        #!Ref <resourceName> is a special operator the SAM uses to get the reference of the resource created. Like:
+      Variables: #!Ref <resourceName> is a special operator the SAM uses to get the reference of the resource created. Like:
         #Orders_table_<random_value>. We won't know the value so !Ref will do this
         ORDERS_TABLE: !Ref OrdersTable # will get the final name
 
@@ -24,11 +23,15 @@ Resources:
     Properties:
       PrimaryKey:
         Name: id #id is our primary key i.e partition key
+        Type: Number
   CreateOrderFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: awslambda-ordersapi
       Handler: com.kushal.aws.lambda.apis.CreateOrderLambda::createOrder
+      Policies:
+        - DynamoDBCrudPolicy: # If table name not mentioned, it'll have permission to perform operations on all table
+            TableName: !Ref OrdersTable
       Events: # to configure anything any resource as a trigger
         OrderEvents: # resource name
           Type: Api
@@ -41,6 +44,9 @@ Resources:
     Properties:
       CodeUri: awslambda-ordersapi
       Handler: com.kushal.aws.lambda.apis.ReadOrdersLambda::getOrders
+      Policies:
+        - DynamoDBReadPolicy: # If table name not mentioned, it'll have permission to perform operations on all table
+            TableName: !Ref OrdersTable
       Events: # to configure anything any resource as a trigger
         OrderEvents: # resource name
           Type: Api
