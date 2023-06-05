@@ -4,16 +4,21 @@ Description: >
   awslambda-ordersapi
   Sample SAM Template for awslambda-ordersapi
 
+Globals:
+  Function: # anywhere you have a function they will have these global properties
+    Runtime: java17
+    Architectures:
+      - x86_64
+    MemorySize: 512
+    Timeout: 30
+
+
 Resources:
   CreateOrderFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: awslambda-ordersapi
       Handler: com.kushal.aws.lambda.apis.CreateOrderLambda::createOrder
-      Runtime: java17
-      Architectures:
-        - x86_64
-      MemorySize: 512
       Events: # to configure anything any resource as a trigger
         OrderEvents: # resource name
           Type: Api
@@ -26,10 +31,6 @@ Resources:
     Properties:
       CodeUri: awslambda-ordersapi
       Handler: com.kushal.aws.lambda.apis.ReadOrdersLambda::getOrders
-      Runtime: java17
-      Architectures:
-        - x86_64
-      MemorySize: 512
       Events: # to configure anything any resource as a trigger
         OrderEvents: # resource name
           Type: Api
