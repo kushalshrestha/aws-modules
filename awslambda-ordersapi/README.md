@@ -72,6 +72,7 @@ awslambda-ordersapi$ sam local invoke HelloWorldFunction --event events/event.js
 
 The SAM CLI can also emulate your application's API. Use the `sam local start-api` to run the API locally on port 3000.
 
+#### Testing in local
 ```bash
 awslambda-ordersapi$ sam local start-api
 awslambda-ordersapi$ curl http://localhost:3000/
