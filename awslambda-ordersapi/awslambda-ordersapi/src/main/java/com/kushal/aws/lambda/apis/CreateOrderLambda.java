@@ -21,7 +21,7 @@ public class CreateOrderLambda {
         Table ordersTable = dynamoDB.getTable(System.getenv("ORDERS_TABLE"));
         //creating a item for inserting into ordersTable
         Item item = new Item().withPrimaryKey("id", order.id)
-                              .withString("itemId", order.itemName)
+                              .withString("itemName", order.itemName)
                               .withInt("quantity", order.quantity);
         ordersTable.putItem(item);
 
