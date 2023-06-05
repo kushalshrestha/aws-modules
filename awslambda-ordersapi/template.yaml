@@ -11,9 +11,19 @@ Globals:
       - x86_64
     MemorySize: 512
     Timeout: 30
+    Environment:
+      Variables:
+        #!Ref <resourceName> is a special operator the SAM uses to get the reference of the resource created. Like:
+        #Orders_table_<random_value>. We won't know the value so !Ref will do this
+        ORDERS_TABLE: !Ref OrdersTable # will get the final name
 
 
 Resources:
+  OrdersTable: # Cloud formation stack will create this resource
+    Type: AWS::Serverless::SimpleTable # Type of resource we'll use
+    Properties:
+      PrimaryKey:
+        Name: id #id is our primary key i.e partition key
   CreateOrderFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
