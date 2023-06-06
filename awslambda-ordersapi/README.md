@@ -1,5 +1,17 @@
 # awslambda-ordersapi
 
+### Project Description
+  - Synchronous Lambda Function - You'll create an API Gateway and based upon the HTTP method these 
+    two lambdas are triggered and a response is fetched :CreateOrderLambda, 
+    ReadOrdersLambda 
+  - Asynchronous Lambda Function (see awslambda-async-patientcheckout for demo)
+    - S3 event as trigger to lambda function
+    - Use Case: Patient Checked out JSON list of a particular day
+      - uploads patient list 
+      - whenever a file is uploaded to S3, each patient from the patient list will map to Patient class. Each 
+        patient will be put onto SNS topic
+    - Another Use Case: SNS will trigger another Lambda
+
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
 - HelloWorldFunction/src/main - Code for the application's Lambda function.
