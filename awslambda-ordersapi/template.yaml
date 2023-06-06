@@ -60,5 +60,11 @@ Outputs:
     Description: "API Gateway endpoint url for create orders function" # This will be rendered
     #Substitute the value which gets created when the stack is created
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/orders"
+  CreateOrderFunction:
+    Description: "Create order lambda function ARN"
+    Value: !GetAtt CreateOrderFunction.Arn
+  CreateOrderFunctionIamRole:
+    Description: "Create order lambda function IAM Role ARN"
+    Value: !GetAtt CreateOrderFunctionRole.Arn
 
 
