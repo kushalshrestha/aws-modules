@@ -11,12 +11,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kushal.aws.lambda.apis.dto.Order;
 
 public class CreateOrderLambda {
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    private DynamoDB dynamoDB = new DynamoDB(AmazonDynamoDBClientBuilder.defaultClient());
+
+
     public APIGatewayProxyResponseEvent createOrder(APIGatewayProxyRequestEvent request) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
         Order order = objectMapper.readValue(request.getBody(), Order.class);
 
         //Dynamodb connection instance
-        DynamoDB dynamoDB = new DynamoDB(AmazonDynamoDBClientBuilder.defaultClient());
         //get table
         Table ordersTable = dynamoDB.getTable(System.getenv("ORDERS_TABLE"));
         //creating a item for inserting into ordersTable
