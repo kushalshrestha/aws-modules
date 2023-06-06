@@ -46,12 +46,19 @@ Resources:
       Handler: com.kushal.aws.lambda.apis.ReadOrdersLambda::getOrders
       Policies:
         - DynamoDBReadPolicy: # If table name not mentioned, it'll have permission to perform operations on all table
-            TableName: !Ref OrdersTable
+            TableName: !Ref OrdersTable # will refer to objects genereated on the fly
       Events: # to configure anything any resource as a trigger
         OrderEvents: # resource name
           Type: Api
           Properties:
             Path: /orders
             Method: GET
+
+#Display additional information as outputs
+Outputs:
+  CreateOrdersAPI:
+    Description: "API Gateway endpoint url for create orders function" # This will be rendered
+    #Substitute the value which gets created when the stack is created
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/orders"
 
 
