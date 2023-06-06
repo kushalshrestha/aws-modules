@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  patientcheckout
+
+  Sample SAM Template for patientcheckout
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 20
+    MemorySize: 512
+
+    Tracing: Active
+  Api:
+    TracingEnabled: true
+Resources:
+  PatientCheckoutBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${AWS::StackName}-${AWS::AccountId}-${AWS::Region}" #to get unique bucket name
+
+
+  PatientCheckoutFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: patientcheckout
+      Handler: com.kushal.aws.lambda.s3sns.PatientCheckoutLambda::handler
+      Runtime: java17
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Policies: # Policies for Lambda function. Provide S3ReadPolicy to this lambda Function
+        - S3ReadPolicy:
+            BucketName: !Sub "${AWS::StackName}-${AWS::AccountId}-${AWS::Region}"
+      Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
+        Variables:
+          PARAM1: VALUE
+      Events:
+        S3Event:
+          Type: S3 #s3 as event source
+          Properties:
+            Bucket: !Ref PatientCheckoutBucket # reference to PatientCheckoutBucket resource
+            Events: s3:ObjectCreated:*  # during which event? During objects are created
+

@@ -20,6 +20,7 @@
         <module>sns</module>
         <module>awslambda/HelloWorldFunction</module>
         <module>awslambda-ordersapi/awslambda-ordersapi</module>
+        <module>awslambda-async-patientcheckout/patientcheckout</module>
     </modules>
 
 
