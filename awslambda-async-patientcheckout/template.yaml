@@ -19,6 +19,8 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub "${AWS::StackName}-${AWS::AccountId}-${AWS::Region}" #to get unique bucket name
+  PatientCheckoutTopic:
+    Type: AWS::SNS::Topic
 
 
   PatientCheckoutFunction:
@@ -33,9 +35,11 @@ Resources:
       Policies: # Policies for Lambda function. Provide S3ReadPolicy to this lambda Function
         - S3ReadPolicy:
             BucketName: !Sub "${AWS::StackName}-${AWS::AccountId}-${AWS::Region}"
+        - SNSPublishMessagePolicy:
+            TopicName: !GetAtt PatientCheckoutTopic.TopicName
       Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
-        Variables:
-          PARAM1: VALUE
+        Variables: # get dynamically the value of the topic name resource created during runtime
+          PATIENT_CHECKOUT_TOPIC: !Ref PatientCheckoutTopic #this function needs the name of the topic
       Events:
         S3Event:
           Type: S3 #s3 as event source
@@ -43,3 +47,15 @@ Resources:
             Bucket: !Ref PatientCheckoutBucket # reference to PatientCheckoutBucket resource
             Events: s3:ObjectCreated:*  # during which event? During objects are created
 
+  BillManagementFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: patientcheckout
+      Handler: com.kushal.aws.lambda.s3sns.BillManagementLambda::handler
+      Runtime: java11
+      MemorySize: 512
+      Events:
+        SNSEvent:
+          Type: SNS # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Topic: !Ref PatientCheckoutTopic
