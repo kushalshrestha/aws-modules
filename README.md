@@ -1,10 +1,15 @@
 # aws-modules
 
 ## Description
-This project is a sample application built using Spring Boot 3 and AWS modules. It demonstrates the integration of Spring Boot with various AWS services for developing scalable and reliable applications.
+This project consists of sample applications for AWS modules. It demonstrates the 
+integration of Spring Boot with various AWS services for developing scalable and reliable applications.
+
 
 ## Features
 * AWS S3 Integration
+* AWS Dynamo DB
+* SNS
+* AWS Lambda
 
 ## Requirements
 * Java 8 or higher
